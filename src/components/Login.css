@@ -1,0 +1,40 @@
+.login-cmp {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  min-height: 710px;
+  height: 100vh;
+}
+
+.login-cmp .wrapper-login {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  border: 1px solid #BDBDBD;
+  border-radius: 24px;
+  width: 473px;
+  height: 635px;
+  flex-grow: 1;
+  padding: 4rem;
+}
+
+.login-cmp .footer-login {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 1rem;
+}
+
+.login-cmp .title-login {
+  font-size: 18px;
+  font-weight: 600;
+  line-height: 24.52px;
+  letter-spacing: -0.035em;
+}
+
+.login-cmp .subtitle-login {
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 21.79px;
+  letter-spacing: -0.035em;
+}
