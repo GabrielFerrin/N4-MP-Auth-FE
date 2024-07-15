@@ -4,13 +4,19 @@ import Register from './components/Register'
 import Login from './components/Login'
 import Profile from './components/Profile'
 import { DataContext } from './context/DataProvider'
-import { useContext } from 'react'
+import { useContext, useEffect } from 'react'
+import getSystemTheme from './helpers/theme'
 
 const App = () => {
-  const { theme } = useContext(DataContext)
+  const { theme, setTheme } = useContext(DataContext)
+
+  useEffect(() => {
+    const systemTheme = getSystemTheme()
+    systemTheme === 'dark' ? setTheme('dark') : setTheme('light')
+  }, [])
 
   return (
-    <div className={theme}>
+    <div className={`app ${theme}`}>
           <BrowserRouter>
             <Routes>
               <Route path='/' element={<Login />} />

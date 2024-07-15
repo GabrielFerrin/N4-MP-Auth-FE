@@ -10,7 +10,30 @@ body {
   font-family: 'Noto Sans', sans-serif;
 }
 
-.light {
+input {
+  all: unset;
+}
+
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:active {
+  transition: all 5000s ease-in-out 0s;
+}
+
+.app.light {
   --color: #333333;
+  --data-color: black;
+  --bg-color: white;
+}
+
+.app.dark {
+  --color: #E0E0E0;
+  --data-color: white;
+  --bg-color: #252329;
+}
+
+.app {
   color: var(--color);
+  background-color: var(--bg-color);
 }

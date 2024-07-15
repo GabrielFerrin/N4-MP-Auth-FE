@@ -2,8 +2,15 @@ import './Login.css'
 import { useMutation } from "@tanstack/react-query"
 import { DataContext } from "../context/DataProvider"
 import { useContext, useEffect, useRef, useState } from "react"
-import { useNavigate } from "react-router-dom"
+import { Link, useNavigate } from "react-router-dom"
 import Logo from './icons/Logo'
+import Mail from './icons/Mail'
+import Lock from './icons/Lock'
+import Google from './icons/Google'
+import Facebook from './icons/Facebook'
+import X from './icons/X'
+import GitHub from './icons/GitHub'
+import Footer from './Footer'
 
 const Login = () => {
   const { isValidToken, loginAPI, setUserData } = useContext(DataContext)
@@ -52,25 +59,35 @@ const Login = () => {
         <div className="wrapper-login">
           <Logo />
           <p className="title-login">
-            Join thousands of learners from around the world
-          </p>
-          <p className="subtitle-login">
-            Master web development by making real-life projects. There
-            are multiple paths for you to choose
+            Login
           </p>
           <form onSubmit={handleSubmit} ref={form} >
-            <input type="text" placeholder="Correo"
-              name="email" onInput={validateData} /><br /><br />
-            <input type="password" placeholder="Contraseña"
-              name="password" onInput={validateData} /><br /><br />
-            <input type="submit" disabled={!formIsValid} />
+            {/* mail */}
+            <div className="input-wrapper-login">
+              <Mail />
+              <input type="text" placeholder="Correo"
+                name="email" onInput={validateData} /><br /><br />
+            </div>
+            {/* password */}
+            <div className="input-wrapper-login">
+              <Lock />
+              <input type="password" placeholder="Contraseña"
+                name="password" onInput={validateData} /><br /><br />
+            </div>
+            {/* submit */}
+            <input type="submit" value="Iniciar sesión" disabled={!formIsValid} />
             {error !== '' && <p>{error}</p>}
           </form>
+          <span>o continúa con estos perfiles sociales</span>
+          <div className="socials-login">
+            <a href="http://www.google.com" target="_blank"><Google /></a>
+            <a href="http://www.facebook.com" target="_blank"><Facebook /></a>
+            <a href="http://www.x.com" target="_blank"><X /></a>
+            <a href="http://www.github.com" target="_blank"><GitHub /></a>
+          </div>
+          <span>¿Aún no tienes una cuenta? <Link to="/register">Regístrate</Link></span>
         </div>
-        <footer className="footer-login">
-          <span>created by <strong>Gabriel Ferrin</strong></span>
-          <span>Funval</span>
-        </footer>
+        <Footer />
       </div>
     </div>
   )

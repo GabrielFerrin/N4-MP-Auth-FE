@@ -3,12 +3,16 @@ import { useContext, useEffect, useRef, useState } from "react"
 import { DataContext } from "../context/DataProvider"
 import { useNavigate } from "react-router-dom"
 import { useMutation } from "@tanstack/react-query"
+import Logo from './icons/Logo'
+import Menu from './Menu'
+import Footer from './Footer'
 
 const Profile = () => {
   const { setIsValidToken, userData, setUserData, getUserAPI,
     updateUserAPI } = useContext(DataContext)
   const [editMode, setEditMode] = useState(false)
   const form = useRef(null)
+  const textarea = useRef(null)
   const navigate = useNavigate()
 
   const getUserMut = useMutation({
@@ -18,6 +22,7 @@ const Profile = () => {
         localStorage.setItem('token', data.token)
         setIsValidToken(true)
         setUserData(data.data)
+        textareaResize()
       } else {
         localStorage.removeItem('token')
         setIsValidToken(false)
@@ -31,7 +36,6 @@ const Profile = () => {
   const updateUserMut = useMutation({
     mutationFn: updateUserAPI,
     onSuccess: (data) => {
-      console.log(data)
       if (data?.success) {
         setUserData(data.data)
         setEditMode(false)
@@ -41,10 +45,22 @@ const Profile = () => {
     onError: (error) => console.log(error)
   })
 
+  const textareaResize = () => {
+    textarea.current.style.height = 0
+    const newHeight = textarea.current.scrollHeight
+    textarea.current.style.height = `${newHeight}px`
+  }
+
   useEffect(() => {
     if (Object.keys(userData).length === 0) {
       getUserMut.mutate()
     }
+
+    textareaResize()
+    const target = textarea.current
+    target.addEventListener('input', textareaResize)
+    return () => target.removeEventListener('input', textareaResize)
+    // style textarea
   }, [])
 
   useEffect(() => {
@@ -56,60 +72,109 @@ const Profile = () => {
     }
   }, [userData])
 
-  const handleLogout = () => {
-    setIsValidToken(false)
-    setUserData({})
-    localStorage.removeItem('token')
-    navigate('/login')
-  }
+  useEffect(() => {
+    if (editMode) {
+      form.current.nombres.focus()
+      form.current.nombres.select()
+    } else {
+      form.current.nombres.value = userData.nombres || ''
+      form.current.bio.value = userData.bio || ''
+      form.current.telefono.value = userData.telefono || ''
+      form.current.email.value = userData.email || ''
+    }
+  }, [editMode])
 
   const handleUpdate = (e) => {
     e.preventDefault()
     const formData = new FormData(form.current)
     const data = Object.fromEntries(formData)
-    if (data.password.trim() === '') {
+    if (data.password === '') {
       delete data.password
       delete data.currentPassword
     }
-    console.log(data)
     updateUserMut.mutate(data)
   }
 
   return (
     <div className="profile-cmp">
-      <h1>Profile</h1>
-      <button onClick={handleLogout}>Logout</button>
-      {userData &&
-        <form ref={form} onSubmit={handleUpdate}>
-          <button type='button' onClick={() => setEditMode(!editMode)}>
-            {editMode ? 'Cancelar' : 'Editar'}
-          </button> <br />
-          {/* nombres */}
-          <label htmlFor="nombres">Nombres</label>
-          <input type="text" name="nombres"
-            disabled={!editMode} />
-          {/* bio */}
-          <label htmlFor="bio">Bio</label>
-          <input type="text" name="bio"
-            defaultValue={userData.bio} disabled={!editMode} />
-          {/* telefono */}
-          <label htmlFor="telefono">Teléfono</label>
-          <input type="text" name="telefono"
-            defaultValue={userData.telefono} disabled={!editMode} />
-          {/* email */}
-          <label htmlFor="email">Email</label>
-          <input type="email" name="email" disabled />
-          {/* password */}
-          <label htmlFor="password">Password</label>
-          <input type="password" name="currentPassword"
-            disabled={!editMode} />
-          {/* new password */}
-          <label htmlFor="newPassword">New Password</label>
-          <input type="password" name="password"
-            disabled={!editMode} />
-          {/* actualizar */}
-          <input type="submit" value="Actualizar" />
-        </form>}
+      <nav className="nav-profile">
+        <Logo /> <Menu username={userData.nombres} />
+      </nav>
+      <div className="main-wrapper-profile">
+        <h2>Personal info</h2>
+        <h4>Basic info, like your name and photo</h4>
+        <div className="info-main-wrapper">
+          <div className="info-wrapper-profile">
+            <div className="info-header-profile">
+              <div className="left-profile">
+                <h5>Profile</h5>
+                <p>Some info may be visible to other people</p>
+              </div>
+              <button type='button' onClick={() => setEditMode(!editMode)}>
+                {editMode ? 'Cancelar' : 'Editar'}
+              </button>
+            </div>
+            <div className="info-main-profile">
+              {userData &&
+                <form ref={form} onSubmit={handleUpdate}>
+                  {/* foto */}
+                  <div className="input-wrapper-profile">
+                    <label htmlFor="foto">PHOTO</label>
+                    <img src="profile-pic-big.png" alt="Profile picture"
+                      height={72} width={72} />
+                  </div>
+                  {/* nombres */}
+                  <div className="input-wrapper-profile">
+                    <label htmlFor="nombres">NAME</label>
+                    <input type="text" name="nombres" disabled={!editMode}
+                      className={!editMode ? 'disabled' : ''} />
+                  </div>
+                  {/* bio */}
+                  <div className="input-wrapper-profile">
+                    <label htmlFor="bio">BIO</label>
+                    <textarea rows="1" type="text" name="bio"
+                      disabled={!editMode} ref={textarea}
+                      className={!editMode ? 'disabled' : ''}
+                      defaultValue={userData.bio} />
+                  </div>
+                  {/* telefono */}
+                  <div className="input-wrapper-profile">
+                    <label htmlFor="telefono">PHONE</label>
+                    <input type="text" name="telefono" disabled={!editMode}
+                      className={!editMode ? 'disabled' : ''}
+                      defaultValue={userData.telefono} />
+                  </div>
+                  {/* email */}
+                  <div className="input-wrapper-profile"
+                    title='It is not allowed to change your email'>
+                    <label htmlFor="email">EMAIL</label>
+                    <input type="email" name="email" disabled
+                      className={!editMode ? 'disabled' : ''} />
+                  </div>
+                  {/* password */}
+                  <div className="input-wrapper-profile"
+                    title='Para modificar su calve, ingrese la clave actual.'>
+                    <label htmlFor="password">PASSWORD</label>
+                    <input type="password" name="currentPassword"
+                      className={!editMode ? 'disabled' : ''}
+                      disabled={!editMode} />
+                  </div>
+                  {/* new password */}
+                  {editMode &&
+                    <div className="input-wrapper-profile"
+                      title='Escriba su nueva clave.'>
+                      <label htmlFor="newPassword">NEW PASSWORD</label>
+                      <input type="password" name="password" disabled={!editMode}
+                        className={!editMode ? 'disabled' : ''} />
+                    </div>}
+                  {/* actualizar */}
+                  {editMode && <input type='submit' value='Actualizar' />}
+                </form>}
+            </div>
+          </div>
+          <Footer />
+        </div>
+      </div>
     </div>
   )
 }

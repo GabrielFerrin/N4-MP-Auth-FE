@@ -14,15 +14,15 @@
   border: 1px solid #BDBDBD;
   border-radius: 24px;
   width: 473px;
-  height: 635px;
   flex-grow: 1;
-  padding: 4rem;
+  padding: 2.5rem 4rem;
 }
 
-.login-cmp .footer-login {
+.login-cmp .wrapper-login form {
   display: flex;
-  justify-content: space-between;
-  margin-top: 1rem;
+  flex-direction: column;
+  gap: .7rem;
+  margin: 1rem 0;
 }
 
 .login-cmp .title-login {
@@ -37,4 +37,63 @@
   font-weight: 400;
   line-height: 21.79px;
   letter-spacing: -0.035em;
+}
+
+.login-cmp .input-wrapper-login {
+  display: flex;
+  align-items: center;
+  padding: 0 1rem;
+  gap: 1rem;
+  height: 48px;
+  border-radius: 8px;
+  border: 1px solid #BDBDBD;
+}
+
+.login-cmp .input-wrapper-login input {
+  flex-grow: 1;
+  border: none;
+  outline: none;
+  font-family: Noto Sans;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 21.79px;
+  letter-spacing: -0.035em;
+  background-color: var(--bg-color);
+  color: var(--color);
+}
+
+.login-cmp .wrapper-login input[type="submit"] {
+  background-color: #2F80ED;
+  border: none;
+  color: white;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 21.79px;
+  height: 38px;
+  border-radius: 8px;
+  margin-top: .6rem;
+  text-align: center;
+  cursor: pointer;
+}
+
+.login-cmp .wrapper-login span {
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 19.07px;
+  letter-spacing: -0.035em;
+  text-align: center;
+  color: #828282;
+}
+
+.login-cmp .socials-login {
+  display: flex;
+  justify-content: space-between;
+  align-self: center;
+  width: 240px;
+  margin: .5rem 0;
+}
+
+.login-cmp .wrapper-login a {
+  text-decoration: none;
+  color: #2F80ED;
 }

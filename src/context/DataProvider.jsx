@@ -7,6 +7,7 @@ export const DataContext = createContext()
 export const DataProvider = ({ children }) => {
   const [isValidToken, setIsValidToken] = useState(false)
   const [userData, setUserData] = useState({})
+  const [showMenu, setShowMenu] = useState(false)
   const [theme, setTheme] = useState('light')
   const dataApi = axios.create({ baseURL: import.meta.env.VITE_API_KEY })
 
@@ -76,7 +77,7 @@ export const DataProvider = ({ children }) => {
     <DataContext.Provider value={{
       registerAPI, isMailValid, isPassValid, isValidToken,
       setIsValidToken, userData, setUserData, loginAPI, getUserAPI,
-      updateUserAPI, theme, setTheme
+      updateUserAPI, theme, setTheme, showMenu, setShowMenu
     }}>
       {children}
     </DataContext.Provider>
