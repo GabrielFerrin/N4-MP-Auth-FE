@@ -57,6 +57,9 @@ const Profile = () => {
     }
 
     textareaResize()
+    setTimeout(() => {
+      textareaResize()
+    }, 900);
     const target = textarea.current
     target.addEventListener('input', textareaResize)
     return () => target.removeEventListener('input', textareaResize)

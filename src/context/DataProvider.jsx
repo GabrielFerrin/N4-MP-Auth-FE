@@ -54,14 +54,31 @@ export const DataProvider = ({ children }) => {
     }
   }
 
-  // verify token
+  // verify token / handle hide menu
   useEffect(() => {
+    // token
     const verify = async () => {
       await verifyToken() ? setIsValidToken(true) :
         setIsValidToken(false)
     }
     verify()
+    // hide menu
+    const handleMenu = (event) => {
+      if (!hasParent(event.target))
+        setShowMenu(false)
+    }
+    window.addEventListener('click', handleMenu)
+    return () => { window.removeEventListener('click', handleMenu) }
   }, [])
+
+  const hasParent = (target) => {
+    if (!target) return false
+    while (target) {
+      if (target.className === 'menu-cmp') return true
+      else target = target.parentNode
+    }
+    return false
+  }
 
   // validators
   const isMailValid = (email) => {
