@@ -21,11 +21,16 @@ const Register = () => {
   const registerMut = useMutation({
     mutationFn: registerAPI,
     onSuccess: (data) => {
-      setUserData([data])
-      localStorage.setItem('token', data.token)
-      navigate('/profile')
+      if (data.success) {
+        setUserData(data)
+        localStorage.setItem('token', data.token)
+        navigate('/profile')
+      } else {
+        console.log(data)
+        alert(data.message)
+      }
     },
-    onError: (error) => console.log(error)
+    onError: (error) => console.log('the error:', error)
   })
 
   const handleSubmit = (e) => {
