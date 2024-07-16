@@ -11,6 +11,7 @@ import Facebook from './icons/Facebook'
 import X from './icons/X'
 import GitHub from './icons/GitHub'
 import Footer from './Footer'
+import Spinner from './Spinner/Spinner'
 
 const Login = () => {
   const { isValidToken, loginAPI, setUserData } = useContext(DataContext)
@@ -32,12 +33,11 @@ const Login = () => {
         navigate('/profile')
       } else {
         setError(data.message)
-        setTimeout(() => {
-          setError('')
-        }, 4000);
       }
     },
-    onError: (error) => console.log('error', error)
+    onError: (error) => {
+      setError(error.message)
+    }
   })
 
   const handleSubmit = (e) => {
@@ -48,6 +48,7 @@ const Login = () => {
   }
 
   const validateData = () => {
+    setError('')
     if (!form.current.email.value || !form.current.password.value)
       setFormIsValid(false)
     else setFormIsValid(true)
@@ -75,8 +76,11 @@ const Login = () => {
                 name="password" onInput={validateData} /><br /><br />
             </div>
             {/* submit */}
-            <input type="submit" value="Iniciar sesión" disabled={!formIsValid} />
-            {error !== '' && <p>{error}</p>}
+            <button type="submit" disabled={!formIsValid} >
+              {loginMut.isPending && <Spinner />}
+              {!loginMut.isPending && 'Iniciar sesión'}
+            </button>
+            {error !== '' && <span className='error-msg'>{error}</span>}
           </form>
           <span>o continúa con estos perfiles sociales</span>
           <div className="socials-login">
@@ -85,7 +89,8 @@ const Login = () => {
             <a href="http://www.x.com" target="_blank"><X /></a>
             <a href="http://www.github.com" target="_blank"><GitHub /></a>
           </div>
-          <span>¿Aún no tienes una cuenta? <Link to="/register">Regístrate</Link></span>
+          <span>¿Aún no tienes una cuenta? <Link to="/register">Regístrate
+          </Link></span>
         </div>
         <Footer />
       </div>

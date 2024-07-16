@@ -19,6 +19,7 @@
 }
 
 .login-cmp .wrapper-login form {
+  position: relative;
   display: flex;
   flex-direction: column;
   gap: .7rem;
@@ -62,7 +63,10 @@
   color: var(--color);
 }
 
-.login-cmp .wrapper-login input[type="submit"] {
+.login-cmp .wrapper-login button[type="submit"] {
+  display: flex;
+  justify-content: center;
+  align-items: center;
   background-color: #2F80ED;
   border: none;
   color: white;
@@ -74,7 +78,33 @@
   margin-top: .6rem;
   text-align: center;
   cursor: pointer;
+  transition: all .2s ease-in-out;
+  opacity: 1;
+
+  &:disabled {
+    background-color: #555555;
+    cursor: not-allowed;
+  }
+
+  &:disabled:hover {
+    background-color: #555555;
+    cursor: not-allowed;
+  }
+
+  &:disabled:active {
+    background-color: #555555;
+    opacity: 1;
+  }
+
+  &:hover {
+    background-color: #055dcf;
+  }
+
+  &:active {
+    opacity: .8;
+  }
 }
+
 
 .login-cmp .wrapper-login span {
   font-size: 14px;
@@ -96,4 +126,15 @@
 .login-cmp .wrapper-login a {
   text-decoration: none;
   color: #2F80ED;
+}
+
+
+.login-cmp .wrapper-login .error-msg {
+  position: absolute;
+  font-weight: 500;
+  color: red;
+  bottom: -22px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100%;
 }

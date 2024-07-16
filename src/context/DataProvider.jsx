@@ -26,6 +26,9 @@ export const DataProvider = ({ children }) => {
       const response = await dataApi.post('login', data)
       return response.data
     } catch (error) {
+      const message = 'Hay problemas de red. Intenta más tarde.'
+      if (error.code === 'ERR_NETWORK')
+        return { success: false, message }
       return error.response.data
     }
   }

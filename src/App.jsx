@@ -12,7 +12,7 @@ const App = () => {
 
   useEffect(() => {
     const systemTheme = getSystemTheme()
-    systemTheme === 'dark' ? setTheme('dark') : setTheme('light')
+    // systemTheme === 'dark' ? setTheme('dark') : setTheme('light')
   }, [])
 
   return (
