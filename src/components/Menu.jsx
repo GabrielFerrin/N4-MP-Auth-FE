@@ -19,11 +19,13 @@ const Menu = ({ username }) => {
   }
 
   return (
-    <div className="menu-cmp" onClick={() => setShowMenu(!showMenu)}>
-      <img src="profile-pic.png" alt="Profile picture"
-        height={32} />
-      <span>{username}</span>
-      <DeployMenu />
+    <div className="menu-cmp">
+      <div className="menu-header" onClick={() => setShowMenu(!showMenu)}>
+        <img src="profile-pic.png" alt="Profile picture"
+          height={32} />
+        <span>{username}</span>
+        <DeployMenu />
+      </div>
       {showMenu && <div className="menu-items-wrapper">
         <button><Profile />My Profile</button>
         <button><Chat />Group Chat</button>

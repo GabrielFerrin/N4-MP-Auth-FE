@@ -1,4 +1,4 @@
-.menu-cmp {
+.menu-cmp .menu-header {
   display: flex;
   align-items: center;
   gap: .7rem;
@@ -6,11 +6,11 @@
   cursor: pointer;
 }
 
-.menu-cmp>img {
+.menu-cmp .menu-header>img {
   border-radius: 8px;
 }
 
-.menu-cmp>span {
+.menu-cmp .menu-header>span {
   font-size: 12px;
   font-weight: 700;
   line-height: 16.34px;

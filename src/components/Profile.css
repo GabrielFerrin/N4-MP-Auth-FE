@@ -65,6 +65,10 @@
   border-top: 1px solid #E0E0E0;
 }
 
+.has-bottom-border {
+  border-bottom: 1px solid #E0E0E0;
+}
+
 .profile-cmp .input-wrapper-profile img {
   margin: .5rem 0;
   margin-left: 11px;
@@ -72,6 +76,7 @@
 }
 
 .profile-cmp .info-header-profile {
+  position: relative;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -105,11 +110,23 @@
   border: 1px solid #828282;
   background-color: transparent;
   color: #828282;
+  cursor: pointer;
+  transition: all .2s ease-in-out;
+
+  &:hover {
+    background-color: #828282;
+    color: white;
+  }
+
+  &:active {
+    opacity: .8;
+  }
 }
 
 .profile-cmp .info-main-profile>form {
   display: flex;
   flex-direction: column;
+  position: relative;
 }
 
 .profile-cmp .input-wrapper-profile {
@@ -142,7 +159,7 @@
   border: 1px solid #828282;
   outline: none;
   background-color: transparent;
-  width: 76.6%;
+  width: 77%;
   height: auto;
   overflow: hidden;
   resize: none;
@@ -162,10 +179,17 @@
 }
 
 .profile-cmp .input-wrapper-profile>input[type="email"] {
+  border: none;
   cursor: not-allowed;
+  &:disabled {
+    border: none;
+  }
 }
 
-.profile-cmp .info-main-profile input[type="submit"] {
+.profile-cmp .info-main-profile button[type="submit"] {
+  display: flex;
+  justify-content: center;
+  align-items: center;
   background-color: #2F80ED;
   max-width: 400px;
   min-width: 300px;
@@ -178,8 +202,44 @@
   line-height: 21.79px;
   height: 38px;
   border-radius: 8px;
-  margin-top: .6rem;
-  margin-bottom: 3rem;
+  margin-top: 1.5rem;
+  margin-bottom: 2rem;
   text-align: center;
   cursor: pointer;
+
+  &:hover {
+    background-color: #055dcf;
+  }
+
+  &:active {
+    opacity: .8;
+  }
+}
+
+
+.profile-cmp .checkmark {
+  position: absolute;
+  top: -70px;
+  right: 20px;
+  display: flex;
+  align-items: center;
+  gap: .5rem;
+  color: #00b600;
+}
+
+.profile-cmp .checkmark span {
+  animation-name: success;
+  animation-duration: .6s;
+  animation-timing-function: linear;
+  color: #00b600;
+}
+
+@keyframes success {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
 }

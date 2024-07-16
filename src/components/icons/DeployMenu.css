@@ -1,3 +1,7 @@
+.deploy-menu-cmp {
+  margin-top: -6px;
+}
+
 .deploy-menu-cmp .normal {
   transform: rotate(180deg);
   transition: all 0.3s ease;

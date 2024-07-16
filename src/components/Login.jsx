@@ -11,7 +11,7 @@ import Facebook from './icons/Facebook'
 import X from './icons/X'
 import GitHub from './icons/GitHub'
 import Footer from './Footer'
-import Spinner from './Spinner/Spinner'
+import Spinner from './Animations/Spinner'
 
 const Login = () => {
   const { isValidToken, loginAPI, setUserData } = useContext(DataContext)

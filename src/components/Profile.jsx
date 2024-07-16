@@ -6,11 +6,14 @@ import { useMutation } from "@tanstack/react-query"
 import Logo from './icons/Logo'
 import Menu from './Menu'
 import Footer from './Footer'
+import Spinner from './Animations/Spinner'
+import Success from './Animations/Success'
 
 const Profile = () => {
   const { setIsValidToken, userData, setUserData, getUserAPI,
     updateUserAPI } = useContext(DataContext)
   const [editMode, setEditMode] = useState(false)
+  const [showCheckMark, setShowCheckMark] = useState(false)
   const form = useRef(null)
   const textarea = useRef(null)
   const navigate = useNavigate()
@@ -40,6 +43,7 @@ const Profile = () => {
         setUserData(data.data)
         setEditMode(false)
         localStorage.setItem('token', data.token)
+        setShowCheckMark(true)
       }
     },
     onError: (error) => console.log(error)
@@ -98,22 +102,34 @@ const Profile = () => {
     updateUserMut.mutate(data)
   }
 
+  const handleEdit = () => {
+    setEditMode(!editMode)
+    setShowCheckMark(!editMode && false)
+  }
+
   return (
     <div className="profile-cmp">
       <nav className="nav-profile">
         <Logo /> <Menu username={userData.nombres} />
       </nav>
       <div className="main-wrapper-profile">
-        <h2>Personal info</h2>
-        <h4>Basic info, like your name and photo</h4>
+        <h2>Información Personal</h2>
+        <h4>Tu información básica</h4>
         <div className="info-main-wrapper">
           <div className="info-wrapper-profile">
             <div className="info-header-profile">
               <div className="left-profile">
-                <h5>Profile</h5>
-                <p>Some info may be visible to other people</p>
+                <h5>{!editMode ? 'Perfil' : 'Actualiza tu información'}</h5>
+                <p>
+                  {!editMode ? 'Algunos campos podrían ser visibles para otras personas' :
+                    'Los cambios se verán reflejados en todos los servicios'}
+                </p>
               </div>
-              <button type='button' onClick={() => setEditMode(!editMode)}>
+              {showCheckMark &&
+                <div className='checkmark'>
+                  <span>Acualizado</span> <Success />
+                </div>}
+              <button type='button' onClick={handleEdit}>
                 {editMode ? 'Cancelar' : 'Editar'}
               </button>
             </div>
@@ -149,10 +165,11 @@ const Profile = () => {
                   </div>
                   {/* email */}
                   <div className="input-wrapper-profile"
-                    title='It is not allowed to change your email'>
+                    title={!editMode ? '' : 'No se permite modificar el correo'}>
                     <label htmlFor="email">EMAIL</label>
                     <input type="email" name="email" disabled
-                      className={!editMode ? 'disabled' : ''} />
+                      className={!editMode ? 'disabled' : ''}
+                      style={{cursor: !editMode ? 'auto' : 'not-allowed'}} />
                   </div>
                   {/* password */}
                   <div className="input-wrapper-profile"
@@ -164,14 +181,17 @@ const Profile = () => {
                   </div>
                   {/* new password */}
                   {editMode &&
-                    <div className="input-wrapper-profile"
+                    <div className="input-wrapper-profile has-bottom-border"
                       title='Escriba su nueva clave.'>
                       <label htmlFor="newPassword">NEW PASSWORD</label>
                       <input type="password" name="password" disabled={!editMode}
                         className={!editMode ? 'disabled' : ''} />
                     </div>}
                   {/* actualizar */}
-                  {editMode && <input type='submit' value='Actualizar' />}
+                  {editMode && <button type='submit'>
+                    {updateUserMut.isPending && <Spinner />}
+                    {!updateUserMut.isPending && 'Actualizar'}
+                  </button>}
                 </form>}
             </div>
           </div>

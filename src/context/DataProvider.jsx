@@ -70,14 +70,22 @@ export const DataProvider = ({ children }) => {
       if (!hasParent(event.target))
         setShowMenu(false)
     }
+    const handleKeyDown = (event) => {
+      if (event.key === 'Escape')
+        setShowMenu(false)
+    }
+    window.addEventListener('keydown', handleKeyDown)
     window.addEventListener('click', handleMenu)
-    return () => { window.removeEventListener('click', handleMenu) }
+    return () => {
+      window.removeEventListener('click', handleMenu)
+      window.removeEventListener('keydown', handleKeyDown)
+    }
   }, [])
 
   const hasParent = (target) => {
     if (!target) return false
     while (target) {
-      if (target.className === 'menu-cmp') return true
+      if (target.className === 'menu-cmp' || target.className === 'menu-items-wrapper') return true
       else target = target.parentNode
     }
     return false
