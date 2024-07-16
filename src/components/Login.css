@@ -132,7 +132,7 @@
 .login-cmp .wrapper-login .error-msg {
   position: absolute;
   font-weight: 500;
-  color: red;
+  color: #ff3b3b;
   bottom: -22px;
   left: 50%;
   transform: translateX(-50%);

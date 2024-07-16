@@ -10,27 +10,30 @@ import Facebook from "./icons/Facebook"
 import X from "./icons/X"
 import GitHub from "./icons/GitHub"
 import Footer from "./Footer"
+import Spinner from "./Animations/Spinner"
 
 const Register = () => {
   const { registerAPI, isMailValid, isPassValid, setUserData } =
     useContext(DataContext)
   const [formIsValid, setFormIsValid] = useState(false)
   const form = useRef(null)
+  const [error, setError] = useState('')
   const navigate = useNavigate()
 
   const registerMut = useMutation({
     mutationFn: registerAPI,
     onSuccess: (data) => {
       if (data.success) {
-        setUserData(data)
+        setUserData(data.data)
         localStorage.setItem('token', data.token)
         navigate('/profile')
       } else {
-        console.log(data)
-        alert(data.message)
+        setError(data.message)
       }
     },
-    onError: (error) => console.log('the error:', error)
+    onError: (error) => {
+      setError(error.message)
+    }
   })
 
   const handleSubmit = (e) => {
@@ -46,6 +49,7 @@ const Register = () => {
     (isMailValid(form.current.email.value) &&
       isPassValid(form.current.password.value)) ?
       setFormIsValid(true) : setFormIsValid(false)
+    setError('')
   }
 
   return (
@@ -58,7 +62,7 @@ const Register = () => {
           </p>
           <p className="subtitle-login">
             Domina el desarrollo web creando proyectos reales. Hay
-            múltiples caminos para elejir.
+            múltiples caminos para elegir.
           </p>
           <form autoComplete="off" onSubmit={handleSubmit} ref={form} >
             <div className="input-wrapper-login">
@@ -72,8 +76,11 @@ const Register = () => {
                 name="password" onInput={validateData} /><br /><br />
             </div>
             {/* submit */}
-            <input type="submit" disabled={!formIsValid} value="Registrarme" />
-            {registerMut.isLoading && <p>Loading...</p>}
+            <button type="submit" disabled={!formIsValid} value="Registrarme">
+              {registerMut.isPending && <Spinner />}
+              {!registerMut.isPending && 'Registrarme'}
+            </button>
+            {error !== '' && <span className='error-msg'>{error}</span>}
           </form>
           <span>o continúa con estos perfiles sociales</span>
           <div className="socials-login">

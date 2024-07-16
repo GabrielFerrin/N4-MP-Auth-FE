@@ -36,4 +36,5 @@ input:-webkit-autofill:active {
 .app {
   color: var(--color);
   background-color: var(--bg-color);
+  min-height: 100vh;
 }

@@ -8,6 +8,7 @@
 
 .menu-cmp .menu-header>img {
   border-radius: 8px;
+  object-fit: cover;
 }
 
 .menu-cmp .menu-header>span {

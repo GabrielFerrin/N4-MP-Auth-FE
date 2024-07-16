@@ -7,7 +7,7 @@ import Profile from './icons/Profile'
 import './Menu.css'
 import { useNavigate } from 'react-router-dom'
 
-const Menu = ({ username }) => {
+const Menu = ({ username, src }) => {
   const { setIsValidToken, setUserData, showMenu, setShowMenu } =
     useContext(DataContext)
   const navigate = useNavigate()
@@ -21,8 +21,8 @@ const Menu = ({ username }) => {
   return (
     <div className="menu-cmp">
       <div className="menu-header" onClick={() => setShowMenu(!showMenu)}>
-        <img src="profile-pic.png" alt="Profile picture"
-          height={32} />
+        <img src={src} alt="Profile picture"
+          height={32} width={32} />
         <span>{username}</span>
         <DeployMenu />
       </div>

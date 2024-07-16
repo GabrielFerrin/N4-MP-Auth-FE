@@ -69,10 +69,46 @@
   border-bottom: 1px solid #E0E0E0;
 }
 
-.profile-cmp .input-wrapper-profile img {
+.profile-cmp .input-wrapper-profile .image-frame {
+  position: relative;
+  width: 72px;
+  height: 72px;
   margin: .5rem 0;
   margin-left: 11px;
+  padding: .8rem;
+  box-sizing: content-box;
+  transition: all .3s ease;
+}
+
+.profile-cmp .input-wrapper-profile .image-frame.edit-frm {
+  border: 1px solid #828282;
+  border-radius: 50%;
+  cursor: pointer;
+  width: 200px;
+  height: 200px;
+}
+
+.profile-cmp .input-wrapper-profile img {
+  transition: all .3s ease;
   border-radius: 10px;
+  object-fit: cover;
+}
+
+.profile-cmp .input-wrapper-profile img.edit-img {
+  border-radius: 50%;
+  width: 200px;
+  height: 200px;
+}
+
+.profile-cmp .input-wrapper-profile .photo-cmp{
+  position: absolute;
+  border-radius: 50%;
+  bottom: -5px;
+  right: 0;
+  background-color: #555555;
+  height: 40px;
+  padding: 17px;
+  box-sizing: content-box;
 }
 
 .profile-cmp .info-header-profile {
@@ -123,10 +159,18 @@
   }
 }
 
+.profile-cmp .info-main-profile {
+  position: relative;
+}
+
 .profile-cmp .info-main-profile>form {
   display: flex;
   flex-direction: column;
   position: relative;
+}
+
+.profile-cmp input[type="file"] {
+  display: none;
 }
 
 .profile-cmp .input-wrapper-profile {
@@ -178,9 +222,16 @@
   color: #BDBDBD;
 }
 
+.profile-cmp .input-wrapper-profile .image-frame {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
 .profile-cmp .input-wrapper-profile>input[type="email"] {
   border: none;
   cursor: not-allowed;
+
   &:disabled {
     border: none;
   }
@@ -219,8 +270,8 @@
 
 .profile-cmp .checkmark {
   position: absolute;
-  top: -70px;
-  right: 20px;
+  bottom: 5px;
+  right: 5px;
   display: flex;
   align-items: center;
   gap: .5rem;
@@ -228,13 +279,13 @@
 }
 
 .profile-cmp .checkmark span {
-  animation-name: success;
+  animation-name: message;
   animation-duration: .6s;
   animation-timing-function: linear;
   color: #00b600;
 }
 
-@keyframes success {
+@keyframes message {
   from {
     opacity: 0;
   }

@@ -1,6 +1,6 @@
-svg {
+.success-cmp {
   animation-name: success;
-  animation-duration: .6s;
+  animation-duration: .3s;
   animation-timing-function: linear;
   color: #00b600;
 }

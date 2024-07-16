@@ -9,6 +9,7 @@ export const DataProvider = ({ children }) => {
   const [userData, setUserData] = useState({})
   const [showMenu, setShowMenu] = useState(false)
   const [theme, setTheme] = useState('light')
+  const [windowResized, setWindowResized] = useState(0)
   const dataApi = axios.create({ baseURL: import.meta.env.VITE_API_KEY })
 
   // API
@@ -17,6 +18,9 @@ export const DataProvider = ({ children }) => {
       const response = await dataApi.post('register', data)
       return response.data
     } catch (error) {
+      const message = 'Hay problemas de red. Intenta más tarde.'
+      if (error.code === 'ERR_NETWORK')
+        return { success: false, message }
       return error.response.data
     }
   }
@@ -45,10 +49,37 @@ export const DataProvider = ({ children }) => {
     }
   }
 
+  const getImageAPI = async () => {
+    try {
+      const token = localStorage.getItem('token')
+      const response = await dataApi.get('get-image', {
+        headers: { Authorization: token },
+        responseType: 'blob'
+      })
+      const src = URL.createObjectURL(response.data)
+      return { success: true, src }
+    } catch (error) {
+      return error.response.data
+    }
+  }
+
   const updateUserAPI = async (data) => {
     try {
       const token = localStorage.getItem('token')
       const response = await dataApi.put('update', data, {
+        headers: { Authorization: token }
+      })
+      return response.data
+    } catch (error) {
+      return error.response.data
+    }
+  }
+
+  const uploadImageAPI = async (data) => {
+    try {
+      console.log('uploadImageAPI', data)
+      const token = localStorage.getItem('token')
+      const response = await dataApi.post('upload-image', data, {
         headers: { Authorization: token }
       })
       return response.data
@@ -74,11 +105,22 @@ export const DataProvider = ({ children }) => {
       if (event.key === 'Escape')
         setShowMenu(false)
     }
+
+    let resizeTimer = null
+    const handleResize = () => {
+      clearTimeout(resizeTimer)
+      resizeTimer = setTimeout(() => {
+        setWindowResized(window.innerWidth)
+      }, 200)
+    }
+
     window.addEventListener('keydown', handleKeyDown)
     window.addEventListener('click', handleMenu)
+    window.addEventListener('resize', handleResize)
     return () => {
       window.removeEventListener('click', handleMenu)
       window.removeEventListener('keydown', handleKeyDown)
+      window.removeEventListener('resize', handleResize)
     }
   }, [])
 
@@ -105,7 +147,8 @@ export const DataProvider = ({ children }) => {
     <DataContext.Provider value={{
       registerAPI, isMailValid, isPassValid, isValidToken,
       setIsValidToken, userData, setUserData, loginAPI, getUserAPI,
-      updateUserAPI, theme, setTheme, showMenu, setShowMenu
+      updateUserAPI, theme, setTheme, showMenu, setShowMenu, getImageAPI,
+      uploadImageAPI, windowResized
     }}>
       {children}
     </DataContext.Provider>
