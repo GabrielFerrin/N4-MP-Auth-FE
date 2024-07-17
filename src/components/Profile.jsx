@@ -53,7 +53,7 @@ const Profile = () => {
         setTmpSrc(data.src)
       } else {
         setSrc('profile-placeholder.svg')
-        console.log(src)
+        setTmpSrc('profile-placeholder.svg')
       }
     }
   })
@@ -72,7 +72,6 @@ const Profile = () => {
           getImageMut.mutate()
         }
       } else {
-        console.log(data)
         alert(data.message)
       }
     },
@@ -83,7 +82,6 @@ const Profile = () => {
     mutationFn: uploadImageAPI,
     onSuccess: (data) => {
       if (data?.success) {
-        console.log(data)
         getImageMut.mutate()
       } else {
         alert(data.message)
@@ -147,11 +145,9 @@ const Profile = () => {
       delete data.password
       delete data.currentPassword
     }
-    console.log(data)
     if (form.current.image.files[0]) {
       const imageData = new FormData()
       imageData.append('image', form.current.image.files[0])
-      console.log(imageData)
       uploadImageMut.mutate(imageData)
     }
     delete data.image
@@ -198,7 +194,7 @@ const Profile = () => {
                 <form ref={form} onSubmit={handleUpdate}>
                   {/* foto */}
                   <div className="input-wrapper-profile">
-                    <label htmlFor="foto">PHOTO</label>
+                    <label htmlFor="foto">FOTO</label>
                     <label htmlFor="foto" className="image-label-profile">
                       <div className={`image-frame${editMode ? ' edit-frm' : ''}`}>
                         {getImageMut.isPending ? <Spinner /> :
@@ -214,7 +210,7 @@ const Profile = () => {
                   </div>
                   {/* nombres */}
                   <div className="input-wrapper-profile">
-                    <label htmlFor="nombres">NAME</label>
+                    <label htmlFor="nombres">NOMBRES</label>
                     <input type="text" id='nombres' name="nombres"
                       disabled={!editMode}
                       className={!editMode ? 'disabled' : ''} />
@@ -229,7 +225,7 @@ const Profile = () => {
                   </div>
                   {/* telefono */}
                   <div className="input-wrapper-profile">
-                    <label htmlFor="telefono">PHONE</label>
+                    <label htmlFor="telefono">TELEFONO</label>
                     <input type="text" name="telefono" disabled={!editMode}
                       className={!editMode ? 'disabled' : ''}
                       defaultValue={userData.telefono} id='telefono' />
@@ -237,7 +233,7 @@ const Profile = () => {
                   {/* email */}
                   <div className="input-wrapper-profile"
                     title={!editMode ? '' : 'No se permite modificar el correo'}>
-                    <label htmlFor="email">EMAIL</label>
+                    <label htmlFor="email">CORREO</label>
                     <input type="email" name="email" disabled
                       className={!editMode ? 'disabled' : ''} id='email'
                       style={{ cursor: !editMode ? 'auto' : 'not-allowed' }} />
@@ -246,7 +242,7 @@ const Profile = () => {
                   <div className="input-wrapper-profile"
                     title={!editMode ? '' :
                       'Para modificar su calve, ingrese la clave actual.'}>
-                    <label htmlFor="password">PASSWORD</label>
+                    <label htmlFor="password">CONTRASEÑA</label>
                     <input type="password" name="currentPassword"
                       className={!editMode ? 'disabled' : ''}
                       disabled={!editMode} id='password' />
@@ -255,7 +251,7 @@ const Profile = () => {
                   {editMode &&
                     <div className="input-wrapper-profile has-bottom-border"
                       title='Escriba su nueva clave.'>
-                      <label htmlFor="newPassword">NEW PASSWORD</label>
+                      <label htmlFor="newPassword">NUEVA CONTRASEÑA</label>
                       <input type="password" name="password" disabled={!editMode}
                         className={!editMode ? 'disabled' : ''} id='newPassword' />
                     </div>}

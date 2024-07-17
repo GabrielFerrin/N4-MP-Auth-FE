@@ -1,9 +1,4 @@
-.photo-cmp {
-  /* display: none; */
-  /* background-color: #BDBDBD; */
-}
-
 .photo-cmp svg {
   height: 100%;
-  color: var(--color);
+  color: #E0E0E0;
 }

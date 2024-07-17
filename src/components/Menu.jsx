@@ -27,10 +27,10 @@ const Menu = ({ username, src }) => {
         <DeployMenu />
       </div>
       {showMenu && <div className="menu-items-wrapper">
-        <button><Profile />My Profile</button>
-        <button><Chat />Group Chat</button>
+        <button><Profile />Mi Perfil</button>
+        <button><Chat />Chat</button>
         <div className="line"></div>
-        <button onClick={handleLogout}><Logout />Logout</button>
+        <button onClick={handleLogout}><Logout />Cerrar sesión</button>
       </div>}
     </div>
   )

@@ -11,6 +11,7 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
+  gap: 1rem;
 }
 
 .profile-cmp .logo-cmp {
@@ -118,6 +119,7 @@
   border-bottom: 1px solid #E0E0E0;
   padding: 0 3rem;
   padding-bottom: 1.7rem;
+  gap: .4rem
 }
 
 .profile-cmp .left-profile>h5 {
@@ -244,7 +246,6 @@
   max-width: 400px;
   min-width: 300px;
   align-self: flex-end;
-  margin-right: 3rem;
   border: none;
   color: white;
   font-size: 16px;
@@ -252,6 +253,7 @@
   line-height: 21.79px;
   height: 38px;
   border-radius: 8px;
+  margin-right: 3rem;
   margin-top: 1.5rem;
   margin-bottom: 2rem;
   text-align: center;
@@ -291,5 +293,55 @@
 
   to {
     opacity: 1;
+  }
+}
+
+@media screen and (max-width: 720px) {
+  .profile-cmp .info-header-profile {
+    padding: 0 2rem;
+    padding-bottom: 1.7rem;
+  }
+
+  .profile-cmp .input-wrapper-profile {
+    padding: .5rem 2rem;
+  }
+
+  .profile-cmp .info-main-profile button[type="submit"] {
+    margin-right: 2rem;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .profile-cmp .info-header-profile {
+    padding: 0 1rem;
+    padding-bottom: 1.7rem;
+  }
+
+  .profile-cmp .input-wrapper-profile {
+    padding: .5rem 1rem;
+  }
+
+  .profile-cmp .info-main-profile button[type="submit"] {
+    margin-right: 1rem;
+  }
+
+  .profile-cmp .input-wrapper-profile .image-frame.edit-frm {
+    width: 150px;
+    height: 150px;
+  }
+  .profile-cmp .input-wrapper-profile img.edit-img {
+    width: 150px;
+    height: 150px;
+  }
+
+  .profile-cmp .input-wrapper-profile {
+    gap: .2rem;
+  }
+  .profile-cmp .input-wrapper-profile>label {
+    width: 30%;
+  }
+
+  .login-cmp .wrapper-login .error-msg {
+    font-size: 11px;
   }
 }

@@ -77,7 +77,6 @@ export const DataProvider = ({ children }) => {
 
   const uploadImageAPI = async (data) => {
     try {
-      console.log('uploadImageAPI', data)
       const token = localStorage.getItem('token')
       const response = await dataApi.post('upload-image', data, {
         headers: { Authorization: token }

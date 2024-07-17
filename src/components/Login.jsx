@@ -60,7 +60,7 @@ const Login = () => {
         <div className="wrapper-login">
           <Logo />
           <p className="title-login">
-            Login
+            Iniciar sesión
           </p>
           <form onSubmit={handleSubmit} ref={form} >
             {/* mail */}

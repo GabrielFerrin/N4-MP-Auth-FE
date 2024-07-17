@@ -138,3 +138,19 @@
   transform: translateX(-50%);
   width: 100%;
 }
+
+@media screen and (max-width: 480px) {
+  .login-cmp .wrapper-login {
+    width: 100%;
+    padding: 2.5rem 2rem;
+  }
+
+  .login-cmp .main-wrapper-login {
+    width: 100%;
+  }
+
+  .login-cmp .input-wrapper-login {
+    width: 100%;
+    gap: .5rem;
+  }
+}

@@ -4,7 +4,7 @@ const Footer = () => {
   return (
     <footer className="footer-cmp">
       <span>
-        created by <strong><a href="https://github.com/gabrielferrin"
+        creado por <strong><a href="https://github.com/gabrielferrin"
           target="_blank">Gabriel Ferrin
         </a></strong></span>
       <span>
