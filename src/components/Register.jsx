@@ -11,6 +11,7 @@ import X from "./icons/X"
 import GitHub from "./icons/GitHub"
 import Footer from "./Footer"
 import Spinner from "./Animations/Spinner"
+import ThemeSwitch from "./ThemeSwitch"
 
 const Register = () => {
   const { registerAPI, isMailValid, isPassValid, setUserData } =
@@ -56,7 +57,12 @@ const Register = () => {
     <div className="login-cmp">
       <div className="main-wrapper-login">
         <div className="wrapper-login">
-          <Logo />
+          <div className="logo-wrapper-login">
+            <Logo />
+            <div className="theme-switch">
+              <ThemeSwitch />
+            </div>
+          </div>
           <p className="title-login">
             Súmate a miles de estudiantes de todo el mundo
           </p>

@@ -6,11 +6,13 @@ import Logout from './icons/Logout'
 import Profile from './icons/Profile'
 import './Menu.css'
 import { useNavigate } from 'react-router-dom'
+import ThemeSwitch from './ThemeSwitch'
 
 const Menu = ({ username, src }) => {
   const { setIsValidToken, setUserData, showMenu, setShowMenu } =
     useContext(DataContext)
   const navigate = useNavigate()
+
   const handleLogout = () => {
     setIsValidToken(false)
     setUserData({})
@@ -20,6 +22,9 @@ const Menu = ({ username, src }) => {
 
   return (
     <div className="menu-cmp">
+      <div className="theme-switch">
+        <ThemeSwitch />
+      </div>
       <div className="menu-header" onClick={() => setShowMenu(!showMenu)}>
         <img src={src} alt="Profile picture"
           height={32} width={32} />

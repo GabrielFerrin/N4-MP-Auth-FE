@@ -12,6 +12,7 @@ import X from './icons/X'
 import GitHub from './icons/GitHub'
 import Footer from './Footer'
 import Spinner from './Animations/Spinner'
+import ThemeSwitch from './ThemeSwitch'
 
 const Login = () => {
   const { isValidToken, loginAPI, setUserData } = useContext(DataContext)
@@ -58,7 +59,12 @@ const Login = () => {
     <div className="login-cmp">
       <div className="main-wrapper-login">
         <div className="wrapper-login">
-          <Logo />
+          <div className="logo-wrapper-login">
+            <Logo />
+            <div className="theme-switch">
+              <ThemeSwitch />
+            </div>
+          </div>
           <p className="title-login">
             Iniciar sesión
           </p>

@@ -25,12 +25,14 @@ input:-webkit-autofill:active {
   --color: #333333;
   --data-color: black;
   --bg-color: white;
+  transition: all .5s ease;
 }
 
 .app.dark {
   --color: #E0E0E0;
   --data-color: white;
   --bg-color: #252329;
+  transition: all .5s ease;
 }
 
 .app {

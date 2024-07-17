@@ -123,6 +123,10 @@ export const DataProvider = ({ children }) => {
     }
   }, [])
 
+  useEffect(() => {
+    localStorage.setItem('theme', theme)
+  }, [theme])
+
   const hasParent = (target) => {
     if (!target) return false
     while (target) {

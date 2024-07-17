@@ -1,0 +1,25 @@
+.theme-switch-cmp {
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.theme-switch-cmp .theme-icon-theme.animate {
+  animation-name: theme-switch;
+  animation-duration: .3s;
+  animation-timing-function: linear;
+}
+
+
+
+@keyframes theme-switch {
+  from {
+    opacity: 0;
+    transform: scale(0);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}

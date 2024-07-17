@@ -1,3 +1,15 @@
+.menu-cmp {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+}
+
+.menu-cmp .theme-switch {
+  height: 30px;
+  width: 30px;
+}
+
 .menu-cmp .menu-header {
   display: flex;
   align-items: center;
