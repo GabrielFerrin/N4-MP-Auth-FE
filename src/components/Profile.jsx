@@ -52,7 +52,8 @@ const Profile = () => {
         setSrc(data.src)
         setTmpSrc(data.src)
       } else {
-        alert(data.message)
+        setSrc('profile-placeholder.svg')
+        console.log(src)
       }
     }
   })

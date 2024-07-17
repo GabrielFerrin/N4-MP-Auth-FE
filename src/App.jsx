@@ -12,19 +12,21 @@ const App = () => {
 
   useEffect(() => {
     const systemTheme = getSystemTheme()
-    systemTheme === 'dark' ? setTheme('dark') : setTheme('light')
+    // systemTheme === 'dark' ? setTheme('dark') : setTheme('light')
   }, [])
 
   return (
     <div className={`app ${theme}`}>
-          <BrowserRouter>
-            <Routes>
-              <Route path='/' element={<Login />} />
-              <Route path='/register' element={<Register />} />
-              <Route path='/profile' element={<Profile />} />
-              <Route path='*' element={<Login />} />
-            </Routes>
-          </BrowserRouter>
+      <div className='app-body'>
+        <BrowserRouter>
+          <Routes>
+            <Route path='/' element={<Login />} />
+            <Route path='/register' element={<Register />} />
+            <Route path='/profile' element={<Profile />} />
+            <Route path='*' element={<Login />} />
+          </Routes>
+        </BrowserRouter>
+      </div>
     </div>
   )
 }
