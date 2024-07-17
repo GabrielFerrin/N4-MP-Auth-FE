@@ -15,27 +15,12 @@
 
 .theme-switch-cmp .theme-icon-theme {
   height: 100%;
-  opacity: 0;
-  transform: scale(0);
-  transition: all 2s ease;
 }
 
-.theme-switch-cmp .theme-icon-theme.dark {
+.theme-switch-cmp .theme-icon-theme.animate {
   animation-name: theme-switch;
   animation-duration: .3s;
   animation-timing-function: linear;
-  animation-delay: 1s;
-  transform: scale(1);
-  opacity: 1;
-}
-
-.theme-switch-cmp .theme-icon-theme.light {
-  animation-name: theme-switch;
-  animation-duration: .3s;
-  animation-timing-function: linear;
-  animation-delay: 1s;
-  transform: scale(1);
-  opacity: 1;
 }
 
 @keyframes theme-switch {
