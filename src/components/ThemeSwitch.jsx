@@ -1,51 +1,32 @@
 import './ThemeSwitch.css'
-import { useContext, useEffect, useRef } from "react"
+import { useContext, useEffect, useState } from "react"
 import { DataContext } from "../context/DataProvider"
 
 const ThemeSwitch = () => {
+  const [clase, setClase] = useState('')
   const { theme, setTheme } = useContext(DataContext)
-  const lightIcon = useRef(null)
-  const darkIcon = useRef(null)
+
+  useEffect(() => {
+    setTimeout(() => {
+      setClase(theme)
+    }, 100);
+  }, [theme])
 
   const handleClick = () => {
     setTheme(theme === 'light' ? 'dark' : 'light')
   }
 
-  useEffect(() => {
-    if (lightIcon.current) {
-      if (theme === 'light') {
-        lightIcon.current.classList.remove('animate')
-        setTimeout(() => {
-          lightIcon.current.classList.add('animate')
-        }, 1);
-      }
-    }
-    if (darkIcon.current) {
-      if (theme === 'dark') {
-        darkIcon.current.classList.remove('animate')
-        setTimeout(() => {
-          darkIcon.current.classList.add('animate')
-        }, 1);
-      }
-    }
-  }, [theme])
-
   return (
     <div className="theme-switch-cmp"
-      style={{ padding: theme === 'light' ? '5px' : '0px' }}
       onClick={handleClick}>
-      {theme === 'light' ?
-        <svg xmlns="http://www.w3.org/2000/svg" fill="none"
-          viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" ref={lightIcon}
-          className="theme-icon-theme"
-          id='dark'>
-          <path strokeLinecap="round" strokeLinejoin="round" d="M21.752 15.002A9.72 9.72 0 0 1 18 15.75c-5.385 0-9.75-4.365-9.75-9.75 0-1.33.266-2.597.748-3.752A9.753 9.753 0 0 0 3 11.25C3 16.635 7.365 21 12.75 21a9.753 9.753 0 0 0 9.002-5.998Z" />
+      {clase === 'light' ?
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20.25 20.25"
+          className={"theme-icon-theme " + clase}>
+          <path d="M10.13,20.25c-.43,0-.78-.35-.78-.78v-2.34c0-.43,.35-.78,.78-.78s.78,.35,.78,.78v2.34c0,.43-.35,.78-.78,.78Zm-6.61-2.74c-.2,0-.4-.08-.55-.23-.3-.3-.3-.8,0-1.1l1.65-1.65c.3-.3,.8-.3,1.1,0s.3,.8,0,1.1l-1.65,1.65c-.15,.15-.35,.23-.55,.23Zm13.22,0c-.2,0-.4-.08-.55-.23l-1.65-1.65c-.3-.3-.3-.8,0-1.1s.8-.3,1.1,0l1.65,1.65c.3,.3,.3,.8,0,1.1-.15,.15-.35,.23-.55,.23Zm-6.61-2.71c-2.58,0-4.67-2.1-4.67-4.67s2.1-4.67,4.67-4.67,4.67,2.1,4.67,4.67-2.1,4.67-4.67,4.67Zm0-7.79c-1.72,0-3.12,1.4-3.12,3.12s1.4,3.12,3.12,3.12,3.12-1.4,3.12-3.12-1.4-3.12-3.12-3.12Zm9.35,3.89h-2.34c-.43,0-.78-.35-.78-.78s.35-.78,.78-.78h2.34c.43,0,.78,.35,.78,.78s-.35,.78-.78,.78Zm-16.36,0H.78c-.43,0-.78-.35-.78-.78s.35-.78,.78-.78H3.12c.43,0,.78,.35,.78,.78s-.35,.78-.78,.78ZM15.08,5.95c-.2,0-.4-.08-.55-.23-.3-.3-.3-.8,0-1.1l1.65-1.65c.3-.3,.8-.3,1.1,0s.3,.8,0,1.1l-1.65,1.65c-.15,.15-.35,.23-.55,.23Zm-9.91,0c-.2,0-.4-.08-.55-.23l-1.65-1.65c-.3-.3-.3-.8,0-1.1s.8-.3,1.1,0l1.65,1.65c.3,.3,.3,.8,0,1.1-.15,.15-.35,.23-.55,.23Zm4.96-2.05c-.43,0-.78-.35-.78-.78V.78c0-.43,.35-.78,.78-.78s.78,.35,.78,.78V3.12c0,.43-.35,.78-.78,.78Z" />
         </svg> :
-        <svg xmlns="http://www.w3.org/2000/svg" fill="none"
-          viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" ref={darkIcon}
-          className="theme-icon-theme"
-          id='light'>
-          <path strokeLinecap="round" strokeLinejoin="round" d="M12 3v2.25m6.364.386-1.591 1.591M21 12h-2.25m-.386 6.364-1.591-1.591M12 18.75V21m-4.773-4.227-1.591 1.591M5.25 12H3m4.227-4.773L5.636 5.636M15.75 12a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0Z" />
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20.25 20.25"
+          className={"theme-icon-theme " + clase} fill='white'>
+          <path d="M10.5,20.25C4.71,20.25,0,15.54,0,9.75,0,5.5,2.53,1.69,6.46,.06c.28-.12,.6-.05,.82,.16,.21,.21,.28,.54,.16,.82-.46,1.1-.69,2.26-.69,3.46,0,4.96,4.04,9,9,9h.01c1.19,0,2.35-.23,3.45-.69,.28-.12,.6-.05,.82,.16,.22,.21,.28,.54,.16,.82-1.64,3.92-5.44,6.46-9.69,6.46ZM5.49,2.27C3.02,3.92,1.5,6.7,1.5,9.75c0,4.96,4.04,9,9,9,3.05,0,5.83-1.52,7.48-3.99-.72,.16-1.46,.24-2.21,.24h-.02c-5.79,0-10.5-4.71-10.5-10.5,0-.76,.08-1.5,.24-2.23Z" />
         </svg>}
     </div>
   )

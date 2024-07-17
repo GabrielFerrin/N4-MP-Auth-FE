@@ -14,7 +14,7 @@ const App = () => {
     const localTheme = localStorage.getItem('theme')
     if (!localTheme) {
       const systemTheme = getSystemTheme()
-      systemTheme === 'dark' ? setTheme('dark') : setTheme('light')
+      // systemTheme === 'dark' ? setTheme('dark') : setTheme('light')
     } else {
       setTheme(localTheme)
     }

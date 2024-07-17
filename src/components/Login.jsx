@@ -100,7 +100,7 @@ const Login = () => {
         </div>
         <Footer />
       </div>
-    </div>
+    </div >
   )
 }
 export default Login

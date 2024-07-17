@@ -3,21 +3,47 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  height: 100%;
+  width: 100%;
 }
 
-.theme-switch-cmp .theme-icon-theme.animate {
+.theme-switch-cmp .theme-icon-theme {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.theme-switch-cmp .theme-icon-theme {
+  height: 100%;
+  opacity: 0;
+  transform: scale(0);
+  transition: all 2s ease;
+}
+
+.theme-switch-cmp .theme-icon-theme.dark {
   animation-name: theme-switch;
   animation-duration: .3s;
   animation-timing-function: linear;
+  animation-delay: 1s;
+  transform: scale(1);
+  opacity: 1;
 }
 
-
+.theme-switch-cmp .theme-icon-theme.light {
+  animation-name: theme-switch;
+  animation-duration: .3s;
+  animation-timing-function: linear;
+  animation-delay: 1s;
+  transform: scale(1);
+  opacity: 1;
+}
 
 @keyframes theme-switch {
   from {
     opacity: 0;
     transform: scale(0);
   }
+
   to {
     opacity: 1;
     transform: scale(1);

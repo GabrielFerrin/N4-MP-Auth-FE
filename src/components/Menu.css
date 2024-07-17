@@ -2,12 +2,16 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  gap: 1rem;
+  gap: .7rem;
 }
 
 .menu-cmp .theme-switch {
-  height: 30px;
-  width: 30px;
+  background-color: purple;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 40px;
+  width: 40px;
 }
 
 .menu-cmp .menu-header {
@@ -57,7 +61,8 @@
   line-height: 16.34px;
   letter-spacing: -0.035em;
   text-align: left;
-  cursor: pointer;
+  cursor: not-allowed;
+  transition: all .3s ease-in-out;
 }
 
 .menu-cmp .menu-items-wrapper>button:nth-child(2),
@@ -73,4 +78,11 @@
   width: 100%;
   height: 1px;
   background-color: #E0E0E0;
+}
+
+.menu-cmp .menu-items-wrapper>button:last-child {
+  cursor: auto;
+  &:hover {
+    background-color: #e2e2e2;
+  }
 }

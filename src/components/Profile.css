@@ -281,7 +281,7 @@
 
 .profile-cmp .checkmark span {
   animation-name: message;
-  animation-duration: .6s;
+  animation-duration: 2s;
   animation-timing-function: linear;
   color: #00b600;
 }
