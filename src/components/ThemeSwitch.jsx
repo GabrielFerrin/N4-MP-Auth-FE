@@ -15,17 +15,13 @@ const ThemeSwitch = () => {
   useEffect(() => {
     if (lightIcon.current) {
       lightIcon.current?.classList.remove('animate')
-      console.log(lightIcon.current.classList)
       setTimeout(() => {
         lightIcon?.current?.classList.add('animate')
-        console.log(lightIcon.current.classList)
       }, 50);
     }
     if (darkIcon.current) {
-      console.log(darkIcon.current.classList)
       darkIcon?.current?.classList.remove('animate')
       setTimeout(() => {
-        console.log(darkIcon.current.classList)
         darkIcon?.current?.classList.add('animate')
       }, 50);
     }
