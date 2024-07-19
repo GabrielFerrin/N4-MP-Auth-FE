@@ -1,0 +1,33 @@
+.message-box-cmp {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  background-color: var(--bg-color);
+  border: 1px solid #828282;
+  border-right: 8px solid green;
+  border-radius: 8px;
+  padding: .4rem;
+  background-color: #cdffac;
+}
+
+.message-box-cmp .pointer-message {
+  position: absolute;
+  z-index: 1;
+  top: -11.8px;
+  width: 13.6735px;
+}
+
+.message-box-cmp .item {
+  display: flex;
+  align-items: center;
+}
+
+.message-box-cmp .item span {
+  width: max-content;
+}
+
+.message-box-cmp .checkmark-icon,
+.message-box-cmp .ex-icon {
+  height: 12px;
+  width: 20px;
+}

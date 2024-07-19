@@ -18,6 +18,8 @@ const Login = () => {
   const { isValidToken, loginAPI, setUserData } = useContext(DataContext)
   const [formIsValid, setFormIsValid] = useState(false)
   const [error, setError] = useState('')
+  const [emailMessage, setEmailMessage] = useState({})
+  const [passMessage, setPassMessage] = useState({})
   const form = useRef(null)
   const navigate = useNavigate()
 
