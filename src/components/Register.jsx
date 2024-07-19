@@ -174,7 +174,7 @@ export default Register
 
 const emailErrors = [
   { desc: 'No debe estar vacío', valid: false },
-  { desc: 'Debe tener un formato válido', valid: false }
+  { desc: 'Debe tener un formato de correo válido', valid: false }
 ]
 
 const passErrors = [
