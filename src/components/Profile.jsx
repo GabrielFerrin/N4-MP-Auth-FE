@@ -245,7 +245,8 @@ const Profile = () => {
                     <label htmlFor="password">CONTRASEÑA</label>
                     <input type="password" name="currentPassword"
                       className={!editMode ? 'disabled' : ''}
-                      disabled={!editMode} id='password' />
+                      disabled={!editMode} id='password'
+                      value={!editMode ? 'password' : ''} />
                   </div>
                   {/* new password */}
                   {editMode &&
