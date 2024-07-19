@@ -129,6 +129,7 @@ const Profile = () => {
       form.current.bio.value = userData.bio || ''
       form.current.telefono.value = userData.telefono || ''
       form.current.email.value = userData.email || ''
+      form.current.image.value = null
       setSrc(tmpSrc)
     }
   }, [editMode])
