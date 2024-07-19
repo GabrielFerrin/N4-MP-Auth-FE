@@ -226,7 +226,7 @@ const Profile = () => {
                   {/* telefono */}
                   <div className="input-wrapper-profile">
                     <label htmlFor="telefono">TELEFONO</label>
-                    <input type="text" name="telefono" disabled={!editMode}
+                    <input type="tel" name="telefono" disabled={!editMode}
                       className={!editMode ? 'disabled' : ''}
                       defaultValue={userData.telefono} id='telefono' />
                   </div>
